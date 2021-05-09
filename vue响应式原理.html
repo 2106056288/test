@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Object.defineProperty->监听对象属性的改变 -->
+    <!-- 发布者订阅者模式通知元素做出刷新 -->
+    <div id="apj">
+        {{message}} {{message}}
+    </div>
+
+    <script>
+        const apj = {
+            el: '#apj',
+            message: '哈哈',
+            name: 'jin'
+
+        }
+        Object.keys(apj).forEach(key => {
+                let value = apj[key]
+                Object.defineProperty(apj, key, {
+                    set(newValue) { //解析HTML代码获取那部分使用过属性
+                        console.log('监听' + key + '改变');
+                        //告诉谁
+                        value = newValue
+                            /* dep.notify() */
+                    },
+                    get() {
+                        console.log('获取' + key + '对应的值')
+                            /*  const w1 = new watcher('张三') */
+                        return value
+                    }
+                })
+            })
+            /*   obj.name = 'kobe' */
+
+        //发布者
+        class Dep {
+            constructor() {
+                this.subs = []
+            }
+
+            addSub(watcher) {
+                this.subs.push(watcher)
+            }
+
+            notify() {
+                this.subs.forEach(item => {
+                    item.update()
+                })
+            }
+        }
+        //订阅者
+        class watcher {
+            constructor(name) {
+                this.name = name
+            }
+            update() {
+                console.log(this.name + '发生update')
+            }
+        }
+        const dep = new Dep()
+        const w1 = new watcher('张三')
+        dep.addSub(w1)
+
+        const w2 = new watcher('李四')
+        dep.addSub(w2)
+
+        const w3 = new watcher('王五')
+        dep.addSub(w3)
+
+        dep.notify()
+    </script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#apj',
+            data: {
+                message: 'heheh',
+                name: 'yu'
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>

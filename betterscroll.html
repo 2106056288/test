@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=2.0">
+    <title>Document</title>
+    <style>
+        .content {
+            height: 200px;
+            background-color: red;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="content">
+        <!--   <button class="btn">按钮</button> -->
+        <ul>
+            <li>你好1</li>
+            <li>你好2</li>
+            <li>你好3</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+            <li>你好</li>
+        </ul>
+    </div>
+
+
+</body>
+<script src='bscroll.js'></script>
+<script>
+    //默认bscroll不能监听滚动位置
+    const bscroll = new BScroll(document.querySelector('.content'), {
+            probeType: 3,
+            click: false,
+            pullUpLoad: true
+        })
+        /*  bscroll.on('scroll', (position) => {
+                 console.log(position);
+             }) */
+        /*  document.querySelector('.btn').addEventListener('click', function() {
+             console.log('btnclick');
+         }) */
+    bscroll.on('pullingUp', () => {
+        console.log('上啦加载');
+        setTimeout(() => {
+            bscroll.finishPullUp()
+        }, 2000)
+    })
+</script>
+
+</html>
