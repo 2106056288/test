@@ -7,7 +7,7 @@
     <detail-shop-info :shop='shop'></detail-shop-info>
     <!-- <detail-goods-info :detail-info='detailInfo'  @detailimageload='detailimageload'/> -->
     <detail-param-info :paramInfo='paramInfo' ref="params"/>
-    <detail-comment ref="comment"/>
+    <detail-comment ref="comment" :commentInfo='commentInfo'/>
     <goods-list  ref="recommend" :goods='showGoods'/>
 
     </scroll>
@@ -65,6 +65,7 @@ data(){
     detailInfo:{},
     paramInfo:{},
     themeTopYs:[],
+    commentInfo:{},
       isShowBackTop:false ,
      goods:{
             'pop':{page:0,list:[] },
@@ -102,17 +103,19 @@ created(){
 
         //获取店铺信息
         this.shop = new Shop(data.shopInfo)
-
+        console.log(this.shop);
         //获取商品详细信息
         this.detailInfo = data.detailInfo
 
         //获取参数信息
         this.paramInfo = new GoodsParam(data.itemParams.info, data.itemParams.rule)
-        
+        console.log(this.paramInfo);
         //获取评论信息
         if(data.rate.cRate !==0){
-            this.commmentInfo = data.rate.list[0]
+            this.commentInfo = data.rate.list[0]
+            console.log(this.commentInfo);
         }
+        //将各部分距离顶部的距离加入数组
         this.$nextTick(()=>{
             this.themeTopYs.push(0)
             this.themeTopYs.push(this.$refs.params.$el.offsetTop-44)
@@ -122,7 +125,6 @@ created(){
            /*  console.log(this.themeTopYs); */
         })
     })
-    
 },
 mounted(){
 },

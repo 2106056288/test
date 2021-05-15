@@ -14,7 +14,3 @@ export function getHomeGoods(type, page) {
         }
     })
 }
-
-function test() {
-    const names = []
-}

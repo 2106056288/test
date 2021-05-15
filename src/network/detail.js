@@ -37,3 +37,9 @@ export class GoodsParam {
         this.sizes = rule.tables
     }
 }
+export class CommentInfo {
+    constructor() {
+        /* this.content = ;
+        this. */
+    }
+}

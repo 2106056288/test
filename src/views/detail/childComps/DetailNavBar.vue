@@ -6,9 +6,10 @@
           </div>
           <div slot="center" class="title">
               <div v-for="(item,index) in titles" class="titles-item"
-              :class="{activated:index===currentIndex}"
+              :class="{active:index === currentIndex}" 
               @click="titleClick(index)">{{item}}</div>
           </div>
+          <div slot="right"></div>
       </nav-bar>
   </div>
 </template>
@@ -23,14 +24,15 @@ components:{
 data(){
     return {
      titles:['商品','参数','评论','推荐'],
-     currentIndex:0
+      currentIndex:0 
     }
 },
 methods:{
     titleClick(index){
         this.currentIndex = index
         this.$emit('titleClick', index)
-       /*  console.log(index); */
+        console.log('index',index); 
+        console.log('current',this.currentIndex);
     },
     backClick(){
         //返回上一级
@@ -54,7 +56,7 @@ methods:{
 .titles-item{
     flex: 1;
 }
-.activated{
+.active{
     color: red;
 }
 .back img{
