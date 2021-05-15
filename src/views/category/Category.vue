@@ -4,8 +4,8 @@
     </div>
 </template>
 
-<script >
-import {getCategoryMultiData} from '../../network/category'
+<script>
+import  {getCategoryData} from 'network/category'
 import BScroll from 'better-scroll'
 
 export default {

@@ -1,11 +1,16 @@
 import { request } from './request'
 export function getCategoryMultiData() {
     return request({
-        url: '/category/data',
+        url: '/category',
     })
 }
-export function getCategoryData() {
+export default function getCategoryData() {
     return request({
-        url: '/category/data',
+        url: '/category',
+    })
+}
+export function getBaiDuData() {
+    return request({
+        url: '/'
     })
 }
