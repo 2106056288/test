@@ -1,16 +1,29 @@
 import { request } from './request'
-export function getCategoryMultiData() {
+
+export function getCategory(type, page) {
     return request({
         url: '/category',
+        params: {
+            type,
+            page
+        }
     })
 }
-export default function getCategoryData() {
+export function getSubcategory(maitKey) {
     return request({
-        url: '/category',
+        url: '/subcategory',
+        params: {
+            maitKey
+        }
     })
 }
-export function getBaiDuData() {
+
+export function getCategoryDetail(miniWallKey, type) {
     return request({
-        url: '/'
+        url: '/subcategory/detail',
+        params: {
+            miniWallKey,
+            type
+        }
     })
 }

@@ -5,6 +5,7 @@ import store from './store'
 import toast from 'components/comment/toast/Toast.vue'
 import FastClick from 'fastclick'
 import VueLazyload from 'vue-lazyload'
+
 Vue.config.productionTip = false
 
 //添加事件总线对象
@@ -16,7 +17,7 @@ Vue.use(toast)
 //解决移动端300毫米延迟
 FastClick.attach(document.body)
 
-//图片懒加载
+//图片懒加载,缓解服务器压力
 Vue.use(VueLazyload, {
     loading: require('../src/assets/img/placehold/placeholder.png')
 })

@@ -17,9 +17,9 @@ export default {
   height: 49px;
 
   position: fixed;
-  left: 0;
+   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0; 
 
   border-top: 1px solid rgba(100,100,100,.1);
   box-shadow: 0 -2px 2px 2px rgba(100,100,100,0.2);

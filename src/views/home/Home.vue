@@ -31,6 +31,7 @@ import FeatureView from './childComps/featureView'
 import NavBar from 'components/comment/navbar/NavBar.vue'
 import TabControl from 'components/content/tabcontrol/TabControl.vue'
 import GoodsList from 'components/content/goods/Goodslist.vue'
+
 import {getHomeMultidata ,getHomeGoods} from 'network/home'
 import Scroll from 'components/comment/scroll/Scroll.vue' 
  import BackTop from 'components/content/backTop/BackTop.vue' 
@@ -72,7 +73,7 @@ export default {
     },
     created(){
         //异步操作
-        //请求多个数据，
+        //请求轮播图，recommend数据，
      this.getHomeMultidata()
 
         //请求商品数据
@@ -85,27 +86,29 @@ export default {
        /* this.$refs.tabControl1.$el. */
      
     },
+
     //销毁页面
     destroyed(){
-     console.log(' home destroyed');
+      //home组件被<keep-alive/>包含，所以离开时不会触发destroyed函数
+     /* console.log(' home destroyed'); */
     },
+
     //进入页面
     activated(){
-   /*   console.log('activated'); */
-     //时间参数不能写0，否则会触发上拉加载更多，回到顶部？
+     //时间参数不能写0，否则会触发上拉加载更多，回到顶部！
       this.$refs.scroll.scroll.refresh()
      this.$refs.scroll.scrollTo(0, this.saveY, 1)
     
     },
+
     //离开页面
     deactivated(){
-    /*  console.log('deactivated'); */
+      //根据滑轮位置，保存离开页面时的y轴位置保存至saveY
      this.saveY = this.$refs.scroll.scroll.y
-    /*  console.log(this.saveY); */
     },
+
     methods:{
         //事件监听
-     
         tabClick(index){
         switch(index){
             case 0:
@@ -121,21 +124,18 @@ export default {
         },
 
         backClick(){
-             console.log('ahha');
              this.$refs.scroll.scrollTo(0, 44, 1000) 
         }, 
       
         contentScroll(position){
-          /*   console.log(position); 
-            console.log(this.tabOffsetTop); */
+          //当滑轮滑动至-1000一下时，将返回顶部组件显示出来
              this.isShowBackTop = (-position.y)>1000 
              this.isTabFixed = (-position.y)>this.tabOffsetTop
         }, 
 
         loadMore(){
-         /*  console.log('三大步'); */
+          //获取当前点击类型的商品数据
           this.getHomeGoods(this.currentType) 
-         /*  console.log('111'); */
           //刷新better-scroll计算的高度 
           this.$refs.scroll.scroll.refresh()
         },
@@ -145,23 +145,25 @@ export default {
            /*  console.log(this.$refs.tabControl2.$el.offsetTop); */
             this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop 
         },
+
         //网络请求
         getHomeMultidata(){
              getHomeMultidata().then(res=>{
+          //将请求过来的数据保存至data以至于不会丢失
             this.banners = res.data.banner.list;
             this.recommends = res.data.recommend.list
-           /*  console.log(res);
-            console.log(this.recommends); */
         })
         },
 
         getHomeGoods(type){
+          //请求数据后，将虚拟页面数+1，以展示数据
             const page  = this.goods[type].page + 1
              getHomeGoods(type,page).then(res=>{
+            //将请求过来的数据先使用扩展运算符展开，再压入到data中的goods的相应数组类型来保存，以至于不会丢失
             this.goods[type].list.push(...res.data.list) 
+           //将真实页面数+1,达到饱和
            this.goods[type].page += 1 
            this.$refs.scroll.finishPullUp()
-           console.log(res);
         })
         },
     }
@@ -170,10 +172,8 @@ export default {
 </script>
 <style scoped>
 #home{
-    /* padding-top: 44px ;  */
    height: 100vh;
    position:relative;
-
 }
 .home-nav{
     background-color :var(--color-tint);

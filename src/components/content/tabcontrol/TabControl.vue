@@ -27,8 +27,9 @@ export default {
    },
    methods:{
        itemClick(index){
+           //div被点击，引发函数itemClick,发送(参数一)事件名TabClick，(参数二)下标名给父组件
             this.$emit('TabClick',index)
-            console.log(index);
+            /* console.log(index); */
           return this.currentIndex = index
          
        }

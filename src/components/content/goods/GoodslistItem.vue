@@ -22,7 +22,7 @@ props:{
 },
 methods:{
     itemClick(){
-     /*    console.log('ItemClick'); */
+        //用商品相关iid和detail拼接，形成新路由，再与路由表相匹配，让router-view动态渲染
         this.$router.push('/detail/'+this.goodsItem.iid)
     }
 }

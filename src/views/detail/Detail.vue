@@ -1,6 +1,6 @@
 <template>
  <div class="detail">
-    <detail-nav-bar @titleClick="titleClick" ref="nav"/>
+    <detail-nav-bar @titleClick1="titleClick" ref="nav"/>
     <scroll class="content" ref="scroll" @scroll="contentScroll" :probe-type='3'> 
     <detail-swiper :top-images='topImages'></detail-swiper>
     <detail-base-info :goods='goodsInfo'/>
@@ -140,7 +140,7 @@ methods:{
             ||(i===length-1&&positionY>this.themeTopYs[i]))
             {
                 /* console.log(i); */
-                this.$refs.nav.currentIndex = i;
+                this.$refs.nav.currentIndex = i+1;
             }
         }
     },

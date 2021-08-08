@@ -23,19 +23,20 @@ props:{
 },
 data(){
     return {
-        isLoad:false
+       /*  isLoad:false */
     }
 },
 components:{
-      Swiper,
-        SwiperItem
+    Swiper,
+    SwiperItem
 },
 methods:{
     imageLoadOver(){
-       if(!this.isLoad){
+      /*  if(!this.isLoad){
         this.$emit('swiperImageLoad')
         this.isLoad=true
-       }
+       } */
+       this.$emit('swiperImageLoad')
     }
 }
 

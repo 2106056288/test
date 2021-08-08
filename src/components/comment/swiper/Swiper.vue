@@ -3,8 +3,7 @@
       <div class="swiper" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
         <slot></slot>
       </div>
-      <slot name="indicator">
-      </slot>
+      <slot name="indicator"></slot>
       <div class="indicator">
         <slot name="indicator" v-if="showIndicator && slideCount>1">
           <div v-for="(item, index) in slideCount" class="indi-item" 
@@ -17,14 +16,16 @@
 <script>
 	export default {
 		name: "Swiper",
+    //轮播图轮转时间间隔
     props: {
       interval: {
 		    type: Number,
-        default: 3000
+        default: 5000
       },
+    //轮播图变化时长
       animDuration: {
 		    type: Number,
-        default: 300
+        default: 1000
       },
       moveRatio: {
         type: Number,
